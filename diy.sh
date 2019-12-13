@@ -102,3 +102,4 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
 # CONFIG_PACKAGE_luci-app-sqm is not set
 EOF
+sed -i 's/^[ \t]*//g' ./.config
