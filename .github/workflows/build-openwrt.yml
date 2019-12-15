@@ -63,7 +63,7 @@ jobs:
     - name: Clone extra luci source code
       run: |
         git clone https://github.com/siryle1213/luci-app-fileassistant openwrt/package/luci-app-fileassistant
-        git clone https://github.com/vernesong/OpenClash/luci-app-openclash
+        git clone https://github.com/vernesong/OpenClash/luci-app-openclash openwrt/package/luci-app-openclash
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
