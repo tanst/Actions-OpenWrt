@@ -63,7 +63,14 @@ jobs:
     - name: Clone extra luci source code
       run: |
         git clone https://github.com/siryle1213/luci-app-fileassistant openwrt/package/luci-app-fileassistant
-        git clone https://github.com/vernesong/OpenClash/luci-app-openclash openwrt/package/luci-app-openclash
+        mkdir package/luci-app-openclash
+        cd package/luci-app-openclash
+        git init
+        git remote add -f origin https://github.com/vernesong/OpenClash.git
+        git config core.sparsecheckout true
+        echo "luci-app-openclash" >> .git/info/sparse-checkout
+        git pull origin master
+        git branch --set-upstream-to=origin/master master
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
