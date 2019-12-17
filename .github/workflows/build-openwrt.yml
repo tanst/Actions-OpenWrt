@@ -63,9 +63,10 @@ jobs:
     - name: Clone extra luci source code
       run: |
         git clone https://github.com/siryle1213/luci-app-fileassistant openwrt/package/luci-app-fileassistant
-
-    - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
+        git clone https://github.com/vernesong/OpenClash openwrt/package/tmp
+        mv openwrt/package/tmp/luci-app-openclash openwrt/package
+#    - name: SSH connection to Actions
+#      uses: P3TERX/debugger-action@master
 
 
     - name: Update feeds
