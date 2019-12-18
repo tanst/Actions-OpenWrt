@@ -5,7 +5,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build OpenWrt
+name: 云编译
 
 on: 
   release:
@@ -23,10 +23,10 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - name: Checkout
+    - name: 校验本地文件
       uses: actions/checkout@master
 
-    - name: Initialization environment
+    - name: 安装编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -54,13 +54,13 @@ jobs:
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
 
-    - name: Clone source code
+    - name: 克隆源代码
       env: 
         REPO_URL: https://github.com/coolsnowwolf/lede
         REPO_BRANCH: master
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: Clone extra luci source code
+    - name: 克隆增强功能源代码
       run: |
         git clone https://github.com/siryle1213/luci-app-fileassistant openwrt/package/luci-app-fileassistant
         git clone https://github.com/vernesong/OpenClash openwrt/package/tmp
@@ -68,13 +68,13 @@ jobs:
 #    - name: SSH connection to Actions
 #      uses: P3TERX/debugger-action@master
 
-    - name: Update feeds
+    - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
 
-    - name: Install feeds
+    - name: 升级 feeds
       run: cd openwrt && ./scripts/feeds install -a
 
-    - name: Load custom configuration
+    - name: 导入自定义配置
       run: |
         [ -e files ] && mv files openwrt/files
         cd openwrt
@@ -154,6 +154,7 @@ jobs:
         
         # LuCI插件选择:
         cat >> .config <<EOF
+        CONFIG_PACKAGE_luci-app-smartdns=y
         CONFIG_PACKAGE_luci-app-openclash=y
         CONFIG_PACKAGE_luci-app-adbyby-plus=y
         CONFIG_PACKAGE_luci-app-advanced-reboot=y
@@ -203,26 +204,26 @@ jobs:
         # CONFIG_PACKAGE_luci-app-sqm is not set
         # CONFIG_PACKAGE_luci-app-openvpn is not set
         # CONFIG_PACKAGE_luci-app-openvpn-server is not set
-        # CONFIG_PACKAGE_luci-app-qBittorrent is not set
+        # CONFIG_PACKAGE_luci-app-qbittorrent is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         echo '修改网关地址'
         sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
         make defconfig
 
-    - name: Download package
+    - name: 下载编译所需源码
       run: |
         cd openwrt && make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Build
+    - name: 编译
       run: |
         cd openwrt
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
 
-    - name: Assemble artifact
+    - name: 清理不必要的文件
       run: |
         cd openwrt
         rm -rf ./artifact/
@@ -230,7 +231,7 @@ jobs:
         find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
         find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
         
-    - name: Upload artifact
+    - name: 上传固件
       uses: actions/upload-artifact@master
       with:
         name: OpenWrt firmware
