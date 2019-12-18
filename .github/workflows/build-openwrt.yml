@@ -62,11 +62,11 @@ jobs:
 
     - name: Clone extra luci source code
       run: |
-        git clone https://github.com/honwen/luci-app-aliddns openwrt/package/luci-app-aliddns
-        git clone https://github.com/zxlhhyccc/luci-app-serverchan openwrt/package/luci-app-serverchan
         git clone https://github.com/siryle1213/luci-app-fileassistant openwrt/package/luci-app-fileassistant
-        git clone https://github.com/Kinodi/luci-theme-atmaterial openwrt/package/luci-theme-atmaterial
-        git clone https://github.com/jerrykuku/luci-theme-argon openwrt/package/luci-theme-argon
+        git clone https://github.com/vernesong/OpenClash openwrt/package/tmp
+        mv openwrt/package/tmp/luci-app-openclash openwrt/package
+#    - name: SSH connection to Actions
+#      uses: P3TERX/debugger-action@master
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
