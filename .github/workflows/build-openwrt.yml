@@ -8,8 +8,6 @@
 name: 云编译
 
 on: 
-  release:
-    types: [published]
   push:
     branches: 
       - master
@@ -20,7 +18,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: 校验本地文件
@@ -110,17 +108,17 @@ jobs:
         # 无论你想要对固件进行怎样的定制, 都需要且只需要修改 EOF 回环内的内容.
         # 
         # 编译x64固件:
-        # cat >> .config <<EOF
-        # CONFIG_TARGET_x86=y
-        # CONFIG_TARGET_x86_64=y
-        # CONFIG_TARGET_x86_64_Generic=y
-        # EOF
+        cat >> .config <<EOF
+        CONFIG_TARGET_x86=y
+        CONFIG_TARGET_x86_64=y
+        CONFIG_TARGET_x86_64_Generic=y
+        EOF
         
         # 设置固件大小:
-        # cat >> .config <<EOF
-        # CONFIG_TARGET_KERNEL_PARTSIZE=30
-        # CONFIG_TARGET_ROOTFS_PARTSIZE=400
-        # EOF
+        cat >> .config <<EOF
+        CONFIG_TARGET_KERNEL_PARTSIZE=32
+        CONFIG_TARGET_ROOTFS_PARTSIZE=128
+        EOF
         
         # 固件压缩:
         # cat >> .config <<EOF
@@ -235,10 +233,11 @@ jobs:
         mkdir -p ./artifact/
         find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
         find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
+        echo "::set-env name=FILENAME::$(echo "OpenWrt-firmware-x86-`date -d "+8 hour" +%Y%m%d-%H%M%S`")"
         
     - name: 上传固件
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt firmware
+        name: ${{ env.FILENAME }}
         path: ./openwrt/artifact/
 
