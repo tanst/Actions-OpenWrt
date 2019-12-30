@@ -192,7 +192,6 @@ jobs:
         CONFIG_PACKAGE_wget=y
         CONFIG_PACKAGE_iperf=y
         CONFIG_PACKAGE_iperf3=y
-        CONFIG_PACKAGE_iperf3-ssl=y
         EOF
         
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
