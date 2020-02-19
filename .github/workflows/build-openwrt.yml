@@ -1,16 +1,9 @@
-#=================================================
-# Description: Build OpenWrt using GitHub Actions
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
-#=================================================
-
 name: 云编译
 
 on: 
-#  push:
-#    branches: 
-#      - master
+  push:
+    branches: 
+      - master
   schedule:
     - cron: 0 22 * * 1
 #  watch:
@@ -61,10 +54,12 @@ jobs:
     - name: 克隆增强功能源代码
       run: |
         git clone https://github.com/siryle1213/luci-app-fileassistant openwrt/package/luci-app-fileassistant
-        git clone https://github.com/vernesong/OpenClash openwrt/package/tmp
-        mv openwrt/package/tmp/luci-app-openclash openwrt/package
-#    - name: SSH connection to Actions
-#      uses: P3TERX/debugger-action@master
+#        git clone https://github.com/vernesong/OpenClash openwrt/package/tmp
+#        mv openwrt/package/tmp/luci-app-openclash openwrt/package
+
+#    - name: SSH 连接
+#      run: cd openwrt
+#      uses: tanst/debugger-action@master
 
     - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -157,20 +152,12 @@ jobs:
         
         # LuCI插件选择:
         cat >> .config <<EOF
-        CONFIG_PACKAGE_luci-app-smartdns=y
-        CONFIG_PACKAGE_luci-app-openclash=y
+        CONFIG_PACKAGE_luci-app-dnspod=y
         CONFIG_PACKAGE_luci-app-adbyby-plus=y
         CONFIG_PACKAGE_luci-app-advanced-reboot=y
-        CONFIG_PACKAGE_luci-app-softethervpn=y
         CONFIG_PACKAGE_luci-app-frpc=y
         CONFIG_PACKAGE_luci-app-hd-idle=y
-        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
-        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
-        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
-        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
-        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
-        CONFIG_PACKAGE_luci-app-ttyd=y
-        CONFIG_PACKAGE_luci-app-v2ray-server=y
+        CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-fileassistant=y
         EOF
         
@@ -238,6 +225,7 @@ jobs:
         find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
         find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
         echo "::set-env name=FILENAME::$(echo "OpenWrt-firmware-x86-`date -d "+8 hour" +%Y%m%d-%H%M%S`")"
+        mv -f ./.config ./artifact/ && mv -f ./bin/package/ ./artifact/
         
     - name: 上传固件
       uses: actions/upload-artifact@master
