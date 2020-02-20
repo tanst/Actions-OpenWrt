@@ -231,7 +231,7 @@ jobs:
         echo "::set-env name=FILENAME::$(echo "OpenWrt-firmware-x86-`date -d "+8 hour" +%Y%m%d-%H%M%S`")"
         mv -f ./.config ./artifact/ && mv -f ./bin/packages/ ./artifact/
         
-    - name: 上传固件
+    - name: 上传固件.
       uses: actions/upload-artifact@master
       with:
         name: ${{ env.FILENAME }}
