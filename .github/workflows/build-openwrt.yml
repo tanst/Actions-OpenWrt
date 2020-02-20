@@ -199,6 +199,10 @@ jobs:
         # CONFIG_PACKAGE_luci-app-openvpn is not set
         # CONFIG_PACKAGE_luci-app-openvpn-server is not set
         # CONFIG_PACKAGE_luci-app-qbittorrent is not set
+        # CONFIG_PACKAGE_luci-app-pptp-server is not set
+        # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
+        # CONFIG_PACKAGE_luci-app-samba is not set
+        # CONFIG_PACKAGE_luci-app-v2ray-server is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         echo '修改网关地址'
