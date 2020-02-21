@@ -203,6 +203,7 @@ jobs:
         # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
         # CONFIG_PACKAGE_luci-app-samba is not set
         # CONFIG_PACKAGE_luci-app-v2ray-server is not set
+        # CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         echo '修改网关地址'
