@@ -190,7 +190,8 @@ jobs:
         # CONFIG_PACKAGE_luci-app-vlmcsd is not set
         # CONFIG_PACKAGE_luci-app-upnp is not set
         # CONFIG_PACKAGE_luci-app-ddns is not set
-        # CONFIG_PACKAGE_luci-app-autoreboot=y
+        # CONFIG_PACKAGE_luci-app-accesscontrol is not set
+        # CONFIG_PACKAGE_luci-app-autoreboot is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         make defconfig
