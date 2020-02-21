@@ -138,10 +138,8 @@ jobs:
         
         # LuCI插件选择:
         cat >> .config <<EOF
-        CONFIG_PACKAGE_luci-app-dnspod=y
         CONFIG_PACKAGE_luci-app-adbyby-plus=y
         CONFIG_PACKAGE_luci-app-advanced-reboot=y
-        CONFIG_PACKAGE_luci-app-hd-idle=y
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-fileassistant=y
         EOF
@@ -189,10 +187,12 @@ jobs:
         # CONFIG_PACKAGE_luci-app-samba is not set
         # CONFIG_PACKAGE_luci-app-v2ray-server is not set
         # CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini is not set
+        # CONFIG_PACKAGE_luci-app-vlmcsd is not set
+        # CONFIG_PACKAGE_luci-app-upnp is not set
+        # CONFIG_PACKAGE_luci-app-ddns is not set
+        # CONFIG_PACKAGE_luci-app-autoreboot=y
         EOF
         sed -i 's/^[ \t]*//g' ./.config
-        echo '修改网关地址'
-        sed -i 's/192.168.1.1/10.10.10.10/g' package/base-files/files/bin/config_generate
         make defconfig
 
     - name: 下载编译所需源码
