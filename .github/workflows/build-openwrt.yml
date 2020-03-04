@@ -138,7 +138,6 @@ jobs:
         
         # LuCI插件选择:
         cat >> .config <<EOF
-        CONFIG_PACKAGE_luci-app-adbyby-plus=y
         CONFIG_PACKAGE_luci-app-advanced-reboot=y
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-fileassistant=y
@@ -169,7 +168,7 @@ jobs:
         # # CONFIG_TARGET_IMAGES_PAD is not set
         # # CONFIG_VMDK_IMAGES is not set
         # CONFIG_PACKAGE_coremark is not set
-        # CONFIG_DEFAULT_coremark is not set
+        # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
         # CONFIG_PACKAGE_luci-app-docker is not set
         # CONFIG_PACKAGE_luci-app-zerotier is not set
         # CONFIG_PACKAGE_luci-app-wifischedule is not set
