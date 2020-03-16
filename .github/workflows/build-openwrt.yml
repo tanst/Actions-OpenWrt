@@ -168,7 +168,6 @@ jobs:
         cat >> .config <<EOF
         # # CONFIG_TARGET_IMAGES_PAD is not set
         # # CONFIG_VMDK_IMAGES is not set
-        # CONFIG_PACKAGE_coremark is not set
         # CONFIG_PACKAGE_luci-app-docker is not set
         # CONFIG_PACKAGE_luci-app-zerotier is not set
         # CONFIG_PACKAGE_luci-app-wifischedule is not set
