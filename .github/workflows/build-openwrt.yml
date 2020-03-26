@@ -142,6 +142,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-advanced-reboot=y
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-fileassistant=y
+        CONFIG_PACKAGE_luci-app-mwan3=y
         EOF
         
         # LuCI主题:
