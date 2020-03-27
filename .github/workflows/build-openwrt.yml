@@ -53,6 +53,17 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
+    - name: 增加固件编译日期
+      run: |
+        echo '增加固件编译日期'
+        sed -i '/exit/d' package/lean/default-settings/files/zzz-default-settings
+        cat << 'EOF' >> package/lean/default-settings/files/zzz-default-settings
+        date=$(date +"%y.%-m.%-d")
+        sed -i "s/\(DISTRIB_REVISION='.*\)'/\1\($date\)'/" /etc/openwrt_release
+        
+        exit 0
+        EOF
+
     - name: 导入自定义配置
       run: |
         [ -e files ] && mv files openwrt/files
@@ -192,8 +203,8 @@ jobs:
         # CONFIG_PACKAGE_luci-app-ddns is not set
         # CONFIG_PACKAGE_luci-app-accesscontrol is not set
         # CONFIG_PACKAGE_luci-app-autoreboot is not set
-        # CONFIG_DEFAULT_autosamba is not set
-        # CONFIG_DEFAULT_luci-app-flowoffload is not set
+        # CONFIG_PACKAGE_autosamba is not set
+        # CONFIG_PACKAGE_luci-app-flowoffload is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         make defconfig
