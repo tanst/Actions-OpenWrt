@@ -192,6 +192,8 @@ jobs:
         # CONFIG_PACKAGE_luci-app-ddns is not set
         # CONFIG_PACKAGE_luci-app-accesscontrol is not set
         # CONFIG_PACKAGE_luci-app-autoreboot is not set
+        # CONFIG_DEFAULT_autosamba is not set
+        # CONFIG_DEFAULT_luci-app-flowoffload is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         make defconfig
