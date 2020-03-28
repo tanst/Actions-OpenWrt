@@ -124,10 +124,10 @@ jobs:
         # EOF
         
         # IPv6支持:
-        cat >> .config <<EOF
-        CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-        CONFIG_PACKAGE_ipv6helper=y
-        EOF
+        # cat >> .config <<EOF
+        # CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+        # CONFIG_PACKAGE_ipv6helper=y
+        # EOF
         
         # USB3.0支持:
         cat >> .config <<EOF
@@ -208,6 +208,10 @@ jobs:
         # CONFIG_PACKAGE_luci-app-flowoffload is not set
         # CONFIG_UnblockNeteaseMusic_Go is not set
         # CONFIG_UnblockNeteaseMusic_NodeJS is not set
+        # CONFIG_PACKAGE_ddns-scripts is not set
+        # CONFIG_PACKAGE_ddns-scripts_aliyun is not set
+        # CONFIG_PACKAGE_ddns-scripts_dnspod is not set
+        # CONFIG_PACKAGE_luci-app-ramfree is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         make defconfig
