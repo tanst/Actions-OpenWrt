@@ -212,6 +212,7 @@ jobs:
         # CONFIG_PACKAGE_ddns-scripts_aliyun is not set
         # CONFIG_PACKAGE_ddns-scripts_dnspod is not set
         # CONFIG_PACKAGE_luci-app-ramfree is not set
+        # CONFIG_PACKAGE_luci-app-airplay2 is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         echo '修改网关地址'
