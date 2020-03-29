@@ -155,6 +155,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-fileassistant=y
         CONFIG_PACKAGE_luci-app-mwan3=y
+        CONFIG_PACKAGE_luci-app-syncdial=y
         EOF
         
         # LuCI主题:
@@ -213,6 +214,8 @@ jobs:
         # CONFIG_PACKAGE_luci-app-ramfree is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
+        echo '修改网关地址'
+        sed -i 's/192.168.1.1/192.168.59.1/g' package/base-files/files/bin/config_generate
         make defconfig
 
     - name: 下载编译所需源码
