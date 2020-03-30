@@ -210,11 +210,12 @@ jobs:
         # CONFIG_PACKAGE_ddns-scripts_aliyun is not set
         # CONFIG_PACKAGE_ddns-scripts_dnspod is not set
         # CONFIG_PACKAGE_luci-app-ramfree is not set
+        # CONFIG_DEFAULT_luci-app-flowoffload is not set
         # CONFIG_PACKAGE_luci-app-airplay2 is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         echo '修改网关地址'
-        sed -i 's/192.168.1.1/192.168.59.1/g' package/base-files/files/bin/config_generate
+        sed -i 's/192.168.1.1/10.10.10.10/g' package/base-files/files/bin/config_generate
         make defconfig
 
     - name: 下载编译所需源码
