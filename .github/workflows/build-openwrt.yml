@@ -228,7 +228,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s
+        make -j$(nproc) || make -j1 V=s
 
     - name: 清理不必要的文件
       run: |
