@@ -176,6 +176,10 @@ jobs:
         CONFIG_PACKAGE_iperf3=y
         CONFIG_PACKAGE_rsync=y
         CONFIG_PACKAGE_rsyncd=y
+        CONFIG_PACKAGE_hdparm=y
+        CONFIG_PACKAGE_smartd=y
+        CONFIG_PACKAGE_smartmontools=y
+        CONFIG_PACKAGE_smartmontools-drivedb=y
         CONFIG_PACKAGE_openssl-util=y
         EOF
         
