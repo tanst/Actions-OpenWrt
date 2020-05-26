@@ -154,6 +154,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-advanced-reboot=y
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-fileassistant=y
+		CONFIG_PACKAGE_luci-app-sqm=y
         EOF
         
         # LuCI主题:
@@ -196,7 +197,6 @@ jobs:
         # CONFIG_PACKAGE_luci-app-unblockmusic is not set
         # CONFIG_PACKAGE_luci-app-transmission is not set
         # CONFIG_PACKAGE_luci-app-xlnetacc is not set
-        # CONFIG_PACKAGE_luci-app-sqm is not set
         # CONFIG_PACKAGE_luci-app-openvpn is not set
         # CONFIG_PACKAGE_luci-app-openvpn-server is not set
         # CONFIG_PACKAGE_luci-app-qbittorrent is not set
