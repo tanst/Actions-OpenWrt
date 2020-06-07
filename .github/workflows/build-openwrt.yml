@@ -62,7 +62,6 @@ jobs:
         EOF
 
     - name: SSH 连接
-      run: cd openwrt
       uses: tanst/debugger-action@master
 
 
