@@ -61,10 +61,6 @@ jobs:
         exit 0
         EOF
 
-    - name: SSH 连接
-      uses: tanst/debugger-action@master
-
-
     - name: 导入自定义配置
       run: |
         [ -e files ] && mv files openwrt/files
@@ -226,6 +222,9 @@ jobs:
         echo '修改网关地址'
         sed -i 's/192.168.1.1/10.10.10.10/g' package/base-files/files/bin/config_generate
         make defconfig
+
+    - name: SSH 连接
+      uses: tanst/debugger-action@master
 
     - name: 下载编译所需源码
       run: |
