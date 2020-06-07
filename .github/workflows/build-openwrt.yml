@@ -41,10 +41,6 @@ jobs:
 #        git clone https://github.com/vernesong/OpenClash openwrt/package/tmp
 #        mv openwrt/package/tmp/luci-app-openclash openwrt/package
 
-#    - name: SSH 连接
-#      run: cd openwrt
-#      uses: tanst/debugger-action@master
-
     - name: 升级 feeds
       run: |
         cd openwrt
@@ -64,6 +60,11 @@ jobs:
         
         exit 0
         EOF
+
+    - name: SSH 连接
+      run: cd openwrt
+      uses: tanst/debugger-action@master
+
 
     - name: 导入自定义配置
       run: |
