@@ -179,7 +179,23 @@ jobs:
         CONFIG_PACKAGE_smartmontools-drivedb=y
         CONFIG_PACKAGE_openssl-util=y
         EOF
-        
+
+        # UPS:
+        cat >> .config <<EOF
+        CONFIG_PACKAGE_apcupsd=y
+        CONFIG_PACKAGE_apcupsd-cgi=y
+        CONFIG_PACKAGE_nut=y
+        CONFIG_NUT_DRIVER_USB=y
+        CONFIG_PACKAGE_nut-common=y
+        CONFIG_PACKAGE_nut-driver-usbhid-ups=y
+        CONFIG_PACKAGE_nut-server=y
+        CONFIG_PACKAGE_nut-upsc=y
+        CONFIG_PACKAGE_nut-upscmd=y
+        CONFIG_PACKAGE_nut-upsmon=y
+        CONFIG_PACKAGE_nut-web-cgi=y
+        CONFIG_PACKAGE_luci-app-nut=y
+        EOF
+          
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
         cat >> .config <<EOF
         # # CONFIG_TARGET_IMAGES_PAD is not set
@@ -223,8 +239,8 @@ jobs:
         sed -i 's/192.168.1.1/10.10.10.10/g' package/base-files/files/bin/config_generate
         make defconfig
 
-    - name: SSH 连接
-      uses: tanst/debugger-action@master
+#    - name: SSH 连接
+#      uses: tanst/debugger-action@master
 
     - name: 下载编译所需源码
       run: |
