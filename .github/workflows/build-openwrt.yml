@@ -38,8 +38,8 @@ jobs:
     - name: 克隆增强功能源代码
       run: |
         git clone https://github.com/siryle1213/luci-app-fileassistant openwrt/package/luci-app-fileassistant
-#        git clone https://github.com/vernesong/OpenClash openwrt/package/tmp
-#        mv openwrt/package/tmp/luci-app-openclash openwrt/package
+        git clone https://github.com/openwrt/luci openwrt/package/tmp
+        mv openwrt/package/tmp/applications/luci-app-nut openwrt/package
 
     - name: 升级 feeds
       run: |
