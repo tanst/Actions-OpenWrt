@@ -38,8 +38,8 @@ jobs:
     - name: 克隆增强功能源代码
       run: |
         git clone https://github.com/siryle1213/luci-app-fileassistant openwrt/package/luci-app-fileassistant
-        git clone https://github.com/openwrt/luci openwrt/package/tmp
-        mv openwrt/package/tmp/applications/luci-app-nut openwrt/package
+#        git clone https://github.com/openwrt/luci openwrt/package/tmp
+#        mv openwrt/package/tmp/applications/luci-app-nut openwrt/package
 
     - name: 升级 feeds
       run: |
@@ -178,22 +178,6 @@ jobs:
         CONFIG_PACKAGE_smartmontools=y
         CONFIG_PACKAGE_smartmontools-drivedb=y
         CONFIG_PACKAGE_openssl-util=y
-        EOF
-
-        # UPS:
-        cat >> .config <<EOF
-        CONFIG_PACKAGE_apcupsd=y
-        CONFIG_PACKAGE_apcupsd-cgi=y
-        CONFIG_PACKAGE_nut=y
-        CONFIG_NUT_DRIVER_USB=y
-        CONFIG_PACKAGE_nut-common=y
-        CONFIG_PACKAGE_nut-driver-usbhid-ups=y
-        CONFIG_PACKAGE_nut-server=y
-        CONFIG_PACKAGE_nut-upsc=y
-        CONFIG_PACKAGE_nut-upscmd=y
-        CONFIG_PACKAGE_nut-upsmon=y
-        CONFIG_PACKAGE_nut-web-cgi=y
-        CONFIG_PACKAGE_luci-app-nut=y
         EOF
           
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
