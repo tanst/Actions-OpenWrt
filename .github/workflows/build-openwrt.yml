@@ -2,7 +2,7 @@ name: 云编译
 
 on: 
   schedule:
-    - cron: 0 22 * * 1
+    - cron: 0 22 2 * *
   watch:
     types: started
 
@@ -178,6 +178,8 @@ jobs:
         CONFIG_PACKAGE_smartmontools=y
         CONFIG_PACKAGE_smartmontools-drivedb=y
         CONFIG_PACKAGE_openssl-util=y
+        CONFIG_PACKAGE_inotifywait=y
+        CONFIG_PACKAGE_inotifywatch=y
         EOF
           
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
