@@ -110,9 +110,9 @@ jobs:
         EOF
         
         # 固件压缩:
-        # cat >> .config <<EOF
-        # CONFIG_TARGET_IMAGES_GZIP=y
-        # EOF
+        cat >> .config <<EOF
+        CONFIG_TARGET_IMAGES_GZIP=y
+        EOF
 
         # 编译UEFI固件:
         # cat >> .config <<EOF
@@ -151,6 +151,8 @@ jobs:
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-fileassistant=y
         CONFIG_PACKAGE_luci-app-sqm=y
+        CONFIG_PACKAGE_luci-app-mwan3=y
+        CONFIG_PACKAGE_luci-app-syncdial=y
         EOF
         
         # LuCI主题:
