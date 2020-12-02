@@ -120,10 +120,10 @@ jobs:
         # EOF
         
         # IPv6支持:
-        cat >> .config <<EOF
-        CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-        CONFIG_PACKAGE_ipv6helper=y
-        EOF
+        #cat >> .config <<EOF
+        #CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+        #CONFIG_PACKAGE_ipv6helper=y
+        #EOF
         
         # USB3.0支持:
         cat >> .config <<EOF
@@ -252,7 +252,7 @@ jobs:
         mkdir -p ./artifact/
         find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
         find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
-        echo "::set-env name=FILENAME::$(echo "OpenWrt-firmware-x86-`date -d "+8 hour" +%Y%m%d-%H%M%S`")"
+        echo "::set-output name=FILENAME::$(echo "OpenWrt-firmware-x86-`date -d "+8 hour" +%Y%m%d-%H%M%S`")"
         mv -f ./.config ./artifact/ && mv -f ./bin/packages/ ./artifact/
         
     - name: 上传固件.
