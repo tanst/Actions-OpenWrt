@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
@@ -26,7 +26,7 @@ jobs:
         sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
-        echo "FILENAME=$(echo "OpenWrt-firmware-x86-`date -d "+8 hour" +%Y%m%d-%H%M%S`")"  >> $GITHUB_ENV
+
         df -h
 
     - name: 克隆源代码
@@ -252,7 +252,7 @@ jobs:
         mkdir -p ./artifact/
         find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
         find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
-        #echo "::set-output name=FILENAME::$(echo "OpenWrt-firmware-x86-`date -d "+8 hour" +%Y%m%d-%H%M%S`")"
+        echo "FILENAME=$(echo "OpenWrt-firmware-x86-`date -d "+8 hour" +%Y%m%d-%H%M%S`")"  >> $GITHUB_ENV
         mv -f ./.config ./artifact/ && mv -f ./bin/packages/ ./artifact/
         
     - name: 上传固件.
