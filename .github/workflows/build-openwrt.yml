@@ -56,7 +56,7 @@ jobs:
         sed -i '/exit/d' package/lean/default-settings/files/zzz-default-settings
         cat << 'EOF' >> package/lean/default-settings/files/zzz-default-settings
         date=$(date +"%y.%-m.%-d")
-        sed -i "s/\(DISTRIB_REVISION='.*\)'/\1 Built by tanst \($date\)'/" /etc/openwrt_release
+        sed -i "s/\(DISTRIB_REVISION='.*\)'/\1 Built by toy \($date\)'/" /etc/openwrt_release
         
         exit 0
         EOF
