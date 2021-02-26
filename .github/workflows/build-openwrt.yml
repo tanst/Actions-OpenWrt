@@ -1,8 +1,8 @@
 name: 云编译
 
 on: 
-  schedule:
-    - cron: 0 22 2 * *
+#  schedule:
+#    - cron: 0 22 2 * *
   watch:
     types: started
 
@@ -207,7 +207,6 @@ jobs:
         # CONFIG_PACKAGE_luci-app-v2ray-server is not set
         # CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini is not set
         # CONFIG_PACKAGE_luci-app-vlmcsd is not set
-        # CONFIG_PACKAGE_luci-app-upnp is not set
         # CONFIG_PACKAGE_luci-app-ddns is not set
         # CONFIG_PACKAGE_luci-app-accesscontrol is not set
         # CONFIG_PACKAGE_luci-app-autoreboot is not set
