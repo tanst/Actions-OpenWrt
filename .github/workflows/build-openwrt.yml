@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
@@ -37,7 +37,7 @@ jobs:
 
     - name: 克隆增强功能源代码
       run: |
-        git clone https://github.com/siryle1213/luci-app-fileassistant openwrt/package/luci-app-fileassistant
+        git clone https://github.com/awesome-openwrt/luci-app-fileassistant openwrt/package/luci-app-fileassistant
 #        git clone https://github.com/openwrt/luci openwrt/package/tmp
 #        mv openwrt/package/tmp/applications/luci-app-nut openwrt/package
 
