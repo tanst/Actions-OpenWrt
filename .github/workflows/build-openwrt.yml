@@ -155,7 +155,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-mwan3=y
         CONFIG_PACKAGE_luci-app-syncdial=y
         CONFIG_PACKAGE_luci-app-wrtbwmon=y
-        CONFIG_PACKAGE_luci-app-omcproxy
+        CONFIG_PACKAGE_luci-app-omcproxy=y
         EOF
         
         # LuCI主题:
@@ -226,6 +226,8 @@ jobs:
         # CONFIG_PACKAGE_luci-app-music-remote-center is not set
         # CONFIG_PACKAGE_luci-app-webadmin is not set
         # CONFIG_PACKAGE_luci-app-sfe is not set
+        # CONFIG_PACKAGE_luci-app-jd-dailybonus is not set
+        # CONFIG_PACKAGE_luci-app-uugamebooster is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         echo '修改网关地址'
