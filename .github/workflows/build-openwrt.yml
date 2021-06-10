@@ -38,6 +38,7 @@ jobs:
     - name: 克隆增强功能源代码
       run: |
         git clone https://github.com/awesome-openwrt/luci-app-fileassistant openwrt/package/luci-app-fileassistant
+        git clone -b 18.06 https://github.com/riverscn/luci-app-omcproxy openwrt/package/luci-app-omcproxy
 #        git clone https://github.com/openwrt/luci openwrt/package/tmp
 #        mv openwrt/package/tmp/applications/luci-app-nut openwrt/package
 
@@ -154,6 +155,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-mwan3=y
         CONFIG_PACKAGE_luci-app-syncdial=y
         CONFIG_PACKAGE_luci-app-wrtbwmon=y
+        CONFIG_PACKAGE_luci-app-omcproxy
         EOF
         
         # LuCI主题:
