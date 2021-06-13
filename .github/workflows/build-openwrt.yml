@@ -157,6 +157,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-wrtbwmon=y
         CONFIG_PACKAGE_luci-app-omcproxy=y
         CONFIG_PACKAGE_luci-app-udpxy=y
+        CONFIG_PACKAGE_luci-app-docker=y
         EOF
         
         # LuCI主题:
@@ -194,7 +195,6 @@ jobs:
         # # CONFIG_TARGET_IMAGES_PAD is not set
         # # CONFIG_VMDK_IMAGES is not set
         # CONFIG_PACKAGE_coremark is not set
-        # CONFIG_PACKAGE_luci-app-docker is not set
         # CONFIG_PACKAGE_luci-app-zerotier is not set
         # CONFIG_PACKAGE_luci-app-wifischedule is not set
         # CONFIG_PACKAGE_luci-app-vsftpd is not set
