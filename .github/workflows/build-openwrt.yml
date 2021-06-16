@@ -48,6 +48,7 @@ jobs:
         sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
         ./scripts/feeds clean
         ./scripts/feeds update -a
+        make dirclean
         ./scripts/feeds install -a
 
     - name: 增加固件编译日期
