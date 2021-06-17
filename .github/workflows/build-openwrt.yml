@@ -156,7 +156,6 @@ jobs:
         CONFIG_PACKAGE_luci-app-wrtbwmon=y
         CONFIG_PACKAGE_luci-app-omcproxy=y
         CONFIG_PACKAGE_luci-app-udpxy=y
-        CONFIG_PACKAGE_luci-app-docker=y
         EOF
         
         # LuCI主题:
@@ -187,7 +186,6 @@ jobs:
         CONFIG_PACKAGE_openssl-util=y
         CONFIG_PACKAGE_inotifywait=y
         CONFIG_PACKAGE_inotifywatch=y
-        CONFIG_PACKAGE_docker-compose=y
         EOF
           
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
@@ -230,6 +228,7 @@ jobs:
         # CONFIG_PACKAGE_luci-app-jd-dailybonus is not set
         # CONFIG_PACKAGE_luci-app-uugamebooster is not set
         # CONFIG_PACKAGE_luci-app-upnp is not set
+        # CONFIG_PACKAGE_luci-app-docker is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         echo '修改网关地址'
