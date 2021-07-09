@@ -55,11 +55,7 @@ jobs:
         echo '增加固件编译日期'
         sed -i '/exit/d' package/lean/default-settings/files/zzz-default-settings
         date=$(date -d "+8 hour" +"%y.%-m.%-d")
-        cat << 'EOF' >> package/lean/default-settings/files/zzz-default-settings
-        sed -i "s/\(DISTRIB_REVISION='.*\)'/\1 Built by toy $date'/" /etc/openwrt_release
-        
-        exit 0
-        EOF
+        echo -e "sed -i 's/\(DISTRIB_REVISION='.*\)'/\\\1 Built by toy ($date)'/' /etc/openwrt_release\n\nexit 0" >> package/lean/default-settings/files/zzz-default-settings
 
     - name: 导入自定义配置
       run: |
@@ -227,7 +223,6 @@ jobs:
         # CONFIG_PACKAGE_luci-app-sfe is not set
         # CONFIG_PACKAGE_luci-app-jd-dailybonus is not set
         # CONFIG_PACKAGE_luci-app-uugamebooster is not set
-        # CONFIG_PACKAGE_luci-app-upnp is not set
         # CONFIG_PACKAGE_luci-app-docker is not set
         EOF
         sed -i 's/^[ \t]*//g' ./.config
