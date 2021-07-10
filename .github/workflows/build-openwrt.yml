@@ -53,6 +53,7 @@ jobs:
       run: |
         cd openwrt
         echo '增加固件编译日期'
+        sed -i 's/5.10/5.4/g' target/linux/x86/Makefile
         sed -i '/exit/d' package/lean/default-settings/files/zzz-default-settings
         date=$(date -d "+8 hour" +"%y.%-m.%-d")
         echo -e "sed -i \"s/\(DISTRIB_REVISION='.*\)'/\\\1 Built by toy ($date)'/\" /etc/openwrt_release\n\nexit 0" >> package/lean/default-settings/files/zzz-default-settings
