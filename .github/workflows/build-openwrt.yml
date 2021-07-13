@@ -33,7 +33,11 @@ jobs:
       env: 
         REPO_URL: https://github.com/coolsnowwolf/lede
         REPO_BRANCH: master
-      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+      run: git clone $REPO_URL openwrt
+        cd openwrt
+        git config --global advice.detachedHead false
+        git checkout 7883a5d
+        make dirclean
 
     - name: 克隆增强功能源代码
       run: |
