@@ -36,7 +36,7 @@ jobs:
       run: |
         git clone https://github.com/coolsnowwolf/lede openwrt
         cd openwrt
-        git reset --hard 7883a5d
+        git reset --hard 5a56f1e
 
     - name: 克隆增强功能源代码
       run: |
