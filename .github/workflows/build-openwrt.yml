@@ -246,20 +246,34 @@ jobs:
         echo -e "$(nproc) thread build."
         make -j$(nproc) || make -j1 V=s
 
-    - name: 清理不必要的文件
+    - name: 打包文件
       run: |
         cd openwrt
+        echo "CompileDate=$(date -d "+8 hour" +%Y%m%d-%H%M%S)"  >> $GITHUB_ENV
         rm -rf ./artifact/
-        mkdir -p ./artifact/
-        find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
-        find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
-        echo "FILENAME=$(echo "OpenWrt-firmware-x86-`date -d "+8 hour" +%Y%m%d-%H%M%S`")"  >> $GITHUB_ENV
-        mv -f ./.config ./artifact/ && mv -f ./bin/packages/ ./artifact/
-        
-    - name: 上传固件.
-      uses: actions/upload-artifact@master
+        mkdir -p ./artifact/firmware
+        mkdir -p ./artifact/package
+        mkdir -p ./artifact/buildinfo
+        rm -rf $(find ./bin/targets/ -type d -name "packages")
+        cp -rf $(find ./bin/targets/ -type f) ./artifact/firmware/
+        cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
+        mv -f ./.config ./artifact/buildinfo/
+        cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
+
+    - name: 上传固件信息
+      uses: actions/upload-artifact@v2
       with:
-        name: ${{ env.FILENAME }}
-        path: ./openwrt/artifact/
+        name: OpenWrt_buildinfo_${{ env.CompileDate }}
+        path: ./artifact/buildinfo/
 
+    - name: 上传 package
+      uses: actions/upload-artifact@v2
+      with:
+        name: OpenWrt_package_${{ env.CompileDate }}
+        path: ./artifact/package/
 
+    - name: 上传固件
+      uses: actions/upload-artifact@v2
+      with:
+        name: OpenWrt_firmware_${{ env.CompileDate }}
+        path: ./artifact/firmware/
